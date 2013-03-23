@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Chart House - Visualize Data from Various API Feeds</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<style>
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+</style>
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="../assets/js/html5shiv.js"></script>
+<![endif]-->
+
+<!-- Bootstrap -->
+<link  href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<script type="text/javascript">
+// TODO: Fallback to local bootstrap.css if failed to load from CDN.
+//  see: http://stackoverflow.com/a/7452378
+//  and: https://gist.github.com/joelclermont/3735026
+// The methods to fallback in above links will not work due to security
+// exception.  It is not allowed to modify(peak) cssRules loaded from other
+// domain.
+</script>
+
+<!-- Chart House -->
+<link  href="jquery.charthouse.css" rel="stylesheet" type="text/css" />
+
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72-precomposed.png">
+                <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57-precomposed.png">
+                               <link rel="shortcut icon" href="favicon.png">
+</head>
+<body>
+<div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<!--
+			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			-->
+			<a class="brand" href="javascript://">Chart House</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+				<li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+				<li><a href="#demo" data-toggle="tab">Demo</a></li>
+				<li><a href="#misc" data-toggle="tab">Misc</a></li>
+				</ul>
+			</div><!-- .nav-collapse -->
+		</div><!-- .container -->
+	</div><!-- .navbar-inner -->
+</div><!-- #navbar -->
+
+<div class="container tab-content">
+	<div id="home" class="tab-pane active">
+		<h1>Chart House</h1>
+		<p>Visualize Data from Various Data Feeds</p>
+	</div><!-- #home -->
+
+	<div id="demo" class="tab-pane">
+		<div class="row">
+			<div class="span12">
+				<form id="chart-params">
+					<table border="0">
+					<tr>
+						<th>Data Group</th>
+						<th>X-Axis</th>
+						<th>Y-Axis</th>
+					</tr>
+					<tr>
+						<td class="data-group">
+							<div class="input-prepend">
+								<button class="btn" type="button"><i class="icon-plus-sign"></i></button>
+								<select class="data-groups">
+								<option value="-">Choose new group to add</option>
+								</select>
+							</div>
+						</td>
+						<td class="axis-params">
+							<div class="input-prepend">
+								<span class="add-on">Title</span>
+								<input id="x-title" class="input-medium" size="30" type="text" placeholder="..."/>
+							</div>
+						</td>
+						<td class="axis-params">
+							<div class="input-prepend">
+								<span class="add-on">Title</span>
+								<input id="y-title" class="input-medium" size="30" type="text" placeholder="..."/>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="data-group">
+							<div class="input-prepend">
+								<button class="btn" type="button"><i class="icon-remove-sign"></i></button>
+								<input class="input-medium" type="text" value="Page Widgets" style="width:200px" disabled='disabled'/>
+							</div>
+						</td>
+						<td class="axis-params">
+							<div class="input-prepend">
+								<span class="add-on">Field</span>
+								<select id="x-field">
+								<option value="-">Loading...</option>
+								</select>
+							</div>
+						</td>
+						<td class="axis-params">
+							<div class="input-prepend">
+								<span class="add-on">Field</span>
+								<select id="y-field">
+								<option value="-">Loading...</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					</table>
+				</form>
+			</div><!-- .span12 -->
+		</div><!-- .row -->
+
+		<div class="row">
+			<div class="span12" id="chart-pane">
+			</div><!-- .span12 -->
+		</div><!-- .row -->
+	</div><!-- #demo -->
+
+	<div id="misc" class="tab-pane">
+		<h1>About</h1>
+		<p>Jeff Hung</p>
+	</div><!-- #home -->
+</div> <!-- /container -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+if (typeof jQuery == 'undefined') {
+	document.write(unescape("%3Cscript src='jquery-1.8.3.min.js'%3E%3C/script%3E"));
+}
+</script>
+
+<!-- Bootstrap -->
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+if (typeof jQuery.fn.button == 'undefined') {
+	document.write(unescape("%3Cscript src='bootstrap-2.3.1/js/bootstrap.min.js'%3E%3C/script%3E"));
+}
+</script>
+
+<!-- Chart House -->
+<script src="jquery.charthouse.js"></script>
+
+<!-- This Page -->
+<link href="styles.css" rel="stylesheet" media="screen">
+<script type="text/javascript">
+
+(function($) {
+	$(document).ready(function() {
+		var DATA_SAMPLE = 'sample.json';
+
+		console.log('Loading: ' + DATA_SAMPLE);
+		$.getJSON(DATA_SAMPLE, function(data) {
+			var spec = $.extract_spec(data[0]);
+			$.each(['#x-field', '#y-field'], function(i, selector) {
+				var options = [];
+				$.each(spec, function(j, s) {
+					options
+					.push(
+						$('<option/>')
+						.attr('value', s.name)
+						.text(s.name + ' (' + s.type + ')')
+					);
+				});
+				$(selector).empty().append(options);
+			});
+		});
+
+		var refresh_chart = function() {
+			$('#chart-pane').charthouse({
+				x_title: $('#x-title').val(),
+				y_title: $('#y-title').val(),
+				data_groups: [
+					{
+						url: 'v1/pcc/tender',
+						x_field: $('#x-field').val(),
+						y_field: $('#y-field').val(),
+					},
+				],
+			});
+		};
+
+		$('#chart-params input').change(refresh_chart);
+		$('#chart-params select').change(refresh_chart);
+	});
+
+})(jQuery);
+
+</script>
+</body>
+</html>

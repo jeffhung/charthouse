@@ -1,0 +1,56 @@
+[
+	{
+		"widget": {
+			"id": "8b6babf",
+			"type": "window",
+			"attributes": {
+				"title": "Sample Konfabulator Widget",
+				"name": "main_window",
+				"width": 500,
+				"height": 500
+			},
+			"children": [ "6ab5d9b", "6df96f1" ]
+		}
+	},
+	{
+		"widget": {
+			"id": "6ab5d9b",
+			"type": "image",
+			"attributes": { 
+				"src": "Images/Sun.png",
+				"name": "sun1",
+				"hOffset": 250,
+				"vOffset": 250,
+				"alignment": "center"
+			},
+			"text": {
+				"data": "Click Here",
+				"size": 36,
+				"style": "bold",
+				"name": "text1",
+				"hOffset": 250,
+				"vOffset": 100,
+				"alignment": "center",
+				"onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
+			},
+			"children": [ ]
+		}
+	},
+	{
+		"widget": {
+			"id": "6df96f1",
+			"type": "text",
+			"attributes": { 
+				"data": "Click Here",
+				"size": 36,
+				"style": "bold",
+				"name": "text1",
+				"hOffset": 250,
+				"vOffset": 100,
+				"alignment": "center",
+				"onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
+			},
+			"children": [ ]
+		}
+	}
+]
