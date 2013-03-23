@@ -1,4 +1,5 @@
-charthouse
-==========
+Chart House
+===========
 
-Visualize data from various API feeds
+Chart House visualize data from various API feeds.
+
